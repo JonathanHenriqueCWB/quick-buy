@@ -2,7 +2,7 @@
 
 namespace QuickBuy.Domain.Entidades
 {
-    public abstract class Usuario
+    public class Usuario : Entidade
     {
         public int UsuarioId { get; set; }
         public string Nome { get; set; }
@@ -14,6 +14,9 @@ namespace QuickBuy.Domain.Entidades
         //Um usuario pode ter nenhum ou varios pedidos
         public ICollection<Pedido> Pedidos { get; set; }
 
-
+        public override void Validate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
