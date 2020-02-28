@@ -5,19 +5,25 @@ using System.Text;
 
 namespace QuickBuy.Domain.Entidades
 {
+    //Classe abstrata não precisa ser instanciada
     public abstract class Entidade
     {
+        //Properties
         public List<string> _mensagensValidacao { get; set; }
+
         private List<string> mensagemValidacao {
             get { return _mensagensValidacao ?? (_mensagensValidacao = new List<string>()); }
          }
 
-        public abstract void Validate();
         protected bool EhValidado
         {
             get { return !mensagemValidacao.Any(); }
         }
 
+        //Métodos/Função abstratos
+        public abstract void Validate();
+
+        //Método/Função
         protected void LimparMensagemValidacao()
         {
             mensagemValidacao.Clear();

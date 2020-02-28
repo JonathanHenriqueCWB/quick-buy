@@ -10,13 +10,10 @@ namespace QuickBuy.Domain.Entidades
         public int PedidoId { get; set; }
         public DateTime DataPedido { get; set; }
         public DateTime DataPrevisaoEntrega { get; set; }
-        public Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; } //Um pedido tem um usuario
         public Endereco Endereco { get; set; }
-        //Possivelmente ira entra uma propert FormaPagamentoId aqui!!!
+        public int FormaPagamentoId { get; set; } //Possível de auteração
         public FormaPagamento FormaPagamento { get; set; }
-
-
-        //Um pedido tem que ter no minimo um ou varios ItemPedido
         public ICollection<ItemPedido> ItemPedidos { get; set; }
 
         public override void Validate()
@@ -24,10 +21,10 @@ namespace QuickBuy.Domain.Entidades
             LimparMensagemValidacao();
 
             if (!ItemPedidos.Any())
-                AdicionarCritica("Pedido não pode ficar sem item de pedido");
+                AdicionarCritica("Crítica - Pedido não pode ficar sem item de pedido");
 
             if (string.IsNullOrEmpty(Endereco.Cep))
-                AdicionarCritica("CEP deve estar preenchido");
+                AdicionarCritica("Crítica - CEP deve estar preenchido");
         }
     }
 }

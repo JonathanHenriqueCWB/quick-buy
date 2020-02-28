@@ -9,10 +9,8 @@ namespace QuickBuy.Domain.Entidades
         public string SobreNome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
-        public string ComfirmaSenha { get; set; }
-
-        //Um usuario pode ter nenhum ou varios pedidos
-        public ICollection<Pedido> Pedidos { get; set; }
+        public string ComfirmaSenha { get; set; }        
+        public ICollection<Pedido> Pedidos { get; set; } //Um usuario pode ter varios pedidos
 
         public override void Validate()
         {
