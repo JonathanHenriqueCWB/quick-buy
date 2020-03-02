@@ -13,3 +13,10 @@ namespace QuickBuy.Domain.Contratos
         void Remover(TEntity entity);
     }  
 }
+
+/*
+    Interface base para implementação da camada de persistencia.
+    As demais classes dessa camada irão implementar essa mesma classe
+    e tbm servirã para camada de configuração nas dependencias, onde as
+    mesma irão mapear as propriedades do banco de dados.
+*/

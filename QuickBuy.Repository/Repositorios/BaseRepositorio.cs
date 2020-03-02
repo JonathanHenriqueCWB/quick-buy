@@ -41,3 +41,15 @@ namespace QuickBuy.Repository.Repositorios
         }
     }
 }
+
+/*
+    Classes de repository/services ou DAO, são responsavel pela
+    persistencia na base de dados.
+    Nessa modelo ela implementa uma interface de contrados em 
+    dominio, e implementa suas classes abstratas.
+    OBS: AS DEMAIS CLASSES DESSA CAMADA SÃO IMPLEMENTADAS DE OUTRA FORMA.
+    SENDO QUE AS MESMA IMPLEMENTARAM ESSE MESMA CLASSE TIPANDO COM SUAS
+    RESPECTIVAS CLASSES, E TAMBÉM IMPLEMENTARÃO AS INTERFACES EM CONTRATOS
+    DA MESA ENTIDADE.
+     
+*/

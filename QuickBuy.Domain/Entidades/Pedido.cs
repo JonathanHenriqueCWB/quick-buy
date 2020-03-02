@@ -10,9 +10,8 @@ namespace QuickBuy.Domain.Entidades
         public int PedidoId { get; set; }
         public DateTime DataPedido { get; set; }
         public DateTime DataPrevisaoEntrega { get; set; }
-        public Usuario Usuario { get; set; } //Um pedido tem um usuario
+        public Usuario Usuario { get; set; }
         public Endereco Endereco { get; set; }
-        public int FormaPagamentoId { get; set; } //Possível de auteração
         public FormaPagamento FormaPagamento { get; set; }
         public ICollection<ItemPedido> ItemPedidos { get; set; }
 
