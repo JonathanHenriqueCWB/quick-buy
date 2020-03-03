@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QuickBuy.Domain.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QuickBuy.Repository.Config
 {
@@ -12,6 +9,9 @@ namespace QuickBuy.Repository.Config
         public void Configure(EntityTypeBuilder<Pedido> builder)
         {
             builder.HasKey(p => p.PedidoId);
+            builder.Property(p => p.DataPedido).IsRequired();
+            builder.Property(p => p.DataPrevisaoEntrega).IsRequired();
+            builder.Property(p => p.Endereco).IsRequired().HasMaxLength(10);
         }
     }
 }
