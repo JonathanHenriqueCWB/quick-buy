@@ -16,8 +16,6 @@ namespace QuickBuy.Repository.Config
             builder.Property(ip => ip.Quantidade)
                 .IsRequired()
                 .HasMaxLength(400);
-            builder.Property(u => u.Produto)
-                .IsRequired();
         }
     }
 }

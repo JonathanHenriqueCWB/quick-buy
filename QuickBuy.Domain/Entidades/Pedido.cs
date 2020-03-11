@@ -7,14 +7,31 @@ namespace QuickBuy.Domain.Entidades
 {
     public class Pedido : Entidade
     {
+        #region PedidoId
         public int PedidoId { get; set; }
+        #endregion
+        #region Data do Pedido
         public DateTime DataPedido { get; set; }
+        #endregion
+        #region Data Previsao Entrega
         public DateTime DataPrevisaoEntrega { get; set; }
-        public Usuario Usuario { get; set; }
-        public Endereco Endereco { get; set; }
-        public FormaPagamento FormaPagamento { get; set; }
-        public ICollection<ItemPedido> ItemPedidos { get; set; }
+        #endregion
+        #region Usuario
+        public int UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        #endregion
+        #region Endereo
+        public int EnderecoId { get; set; }
+        public virtual Endereco Endereco { get; set; }
+        #endregion
+        #region Forma Pagamento
+        public int FormaPagamentoId { get; set; }
+        public virtual FormaPagamento FormaPagamento { get; set; }
+        #endregion
 
+        public virtual ICollection<ItemPedido> ItemPedidos { get; set; }
+
+        #region Método/Validate herdada da classe pai Entidade
         public override void Validate()
         {
             LimparMensagemValidacao();
@@ -25,5 +42,6 @@ namespace QuickBuy.Domain.Entidades
             if (string.IsNullOrEmpty(Endereco.Cep))
                 AdicionarCritica("Crítica - CEP deve estar preenchido");
         }
+        #endregion
     }
 }

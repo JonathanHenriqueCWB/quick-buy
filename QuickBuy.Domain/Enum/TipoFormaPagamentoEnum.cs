@@ -12,3 +12,8 @@ namespace QuickBuy.Domain.Enum
         Deposito =3
     }
 }
+
+/*
+ *  Classe do tipo enumerado quer servirá com apoio a classe FormaPagamaneto
+ *  
+ */

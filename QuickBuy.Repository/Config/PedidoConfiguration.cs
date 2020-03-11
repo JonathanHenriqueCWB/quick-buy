@@ -11,7 +11,6 @@ namespace QuickBuy.Repository.Config
             builder.HasKey(p => p.PedidoId);
             builder.Property(p => p.DataPedido).IsRequired();
             builder.Property(p => p.DataPrevisaoEntrega).IsRequired();
-            builder.Property(p => p.Endereco).IsRequired().HasMaxLength(10);
         }
     }
 }

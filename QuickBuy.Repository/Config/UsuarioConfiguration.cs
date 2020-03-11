@@ -27,6 +27,9 @@ namespace QuickBuy.Repository.Config
             builder.Property(u => u.Senha)
                 .IsRequired()
                 .HasMaxLength(400);
+
+            //Esse comando diz que usuario pode ter varios pedidos, mais pedido so pode ter um usuario
+            builder.HasMany(u => u.Pedidos).WithOne(p => p.Usuario);
         }
     }
 }

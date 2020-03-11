@@ -30,3 +30,10 @@ namespace QuickBuy.Domain.ObjetoDeValor
         }
     }
 }
+
+    /*
+     *     Classe que serve de apoio a classe pedido, por isso não foi considerado]
+     *     uma entidade, as propriedades EhBoleto, EhCartaoCredito, EhDeposito, ou 
+     *     não definido definirá o tipo de pagamento, caso id da classe seja igual o
+     *     valor do enum correspondente
+     */
