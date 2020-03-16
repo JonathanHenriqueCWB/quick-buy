@@ -19,9 +19,9 @@ namespace QuickBuy.Repository.Contexto
                 return;
             }
 
-            FormaPagamento fm1 = new FormaPagamento(1, "Boleto", "Forma de pagamento Boleto");
-            FormaPagamento fm2 = new FormaPagamento(2, "Cartao de Credito", "Forma de pagamento Cartao");
-            FormaPagamento fm3 = new FormaPagamento(3, "Deposito", "Forma de pagamento Deposito");
+            //FormaPagamento fm1 = new FormaPagamento(1, "Boleto", "Forma de pagamento Boleto");
+            //FormaPagamento fm2 = new FormaPagamento(2, "Cartao de Credito", "Forma de pagamento Cartao");
+            //FormaPagamento fm3 = new FormaPagamento(3, "Deposito", "Forma de pagamento Deposito");
 
             //_contexto.FormaPagamentos.AddRange(fm1, fm2, fm3);
             //_contexto.SaveChanges();

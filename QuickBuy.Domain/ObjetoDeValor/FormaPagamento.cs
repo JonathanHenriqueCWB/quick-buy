@@ -7,12 +7,16 @@ namespace QuickBuy.Domain.ObjetoDeValor
 {
     public class FormaPagamento
     {
+        #region Constrotuor
+        /* Caso queira utilizar SeedingService habilitar construtor com argumento
         public FormaPagamento(int id, string nome, string descricao)
         {
             FormaPagamentoId = id;
             Nome = nome;
             Descricao = descricao;
         }
+        */
+        #endregion
 
         public int FormaPagamentoId { get; set; }
         public string Nome { get; set; }
