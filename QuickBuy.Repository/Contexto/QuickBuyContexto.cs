@@ -28,7 +28,6 @@ namespace QuickBuy.Repository.Contexto
 
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }
 
