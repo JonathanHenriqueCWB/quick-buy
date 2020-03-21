@@ -11,12 +11,13 @@ namespace QuickBuy.Repository.Contexto
         {
         }
 
+        #region DbSet
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ItemPedido> ItemPedidos { get; set; }
         public DbSet<FormaPagamento> FormaPagamentos { get; set; }
-
+        #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Classes de mapeamento aqui..
