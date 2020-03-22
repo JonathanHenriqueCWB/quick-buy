@@ -2,7 +2,7 @@
 
 namespace QuickBuy.Repository.Migrations
 {
-    public partial class CargaFormaPagamentoContexto : Migration
+    public partial class SeedingServiceCargaInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace QuickBuy.Repository.Migrations
             migrationBuilder.InsertData(
                 table: "FormaPagamentos",
                 columns: new[] { "FormaPagamentoId", "Descricao", "Nome" },
-                values: new object[] { 2, "Forma de pajgamento Cartão de Credito", "Cartão de Credito" });
+                values: new object[] { 2, "Forma de pagamento Cartão de Credito", "Cartão de Credito" });
 
             migrationBuilder.InsertData(
                 table: "FormaPagamentos",

@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuickBuy.Domain.Contratos;
 using QuickBuy.Repository.Contexto;
+using QuickBuy.Repository.Repositorios;
 
 namespace QuickBuy.Web
 {
@@ -38,7 +40,8 @@ namespace QuickBuy.Web
                     , m => m.MigrationsAssembly("QuickBuy.Repository")));
             #endregion
             #region DI
-            //services.AddScoped<SeedingService>();
+            services.AddScoped<SeedingService>();
+            services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
             #endregion
 
             // In production, the Angular files will be served from this directory
@@ -49,14 +52,13 @@ namespace QuickBuy.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 #region SeedService
-                //Caso utilizar criar argumento na assinatura do metodo!!!
-                //seedingService.Seed(); 
+                seedingService.Seed(); 
                 #endregion
             }
             else

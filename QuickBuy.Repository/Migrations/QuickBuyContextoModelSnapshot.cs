@@ -157,7 +157,7 @@ namespace QuickBuy.Repository.Migrations
                         new
                         {
                             FormaPagamentoId = 2,
-                            Descricao = "Forma de pajgamento Cartão de Credito",
+                            Descricao = "Forma de pagamento Cartão de Credito",
                             Nome = "Cartão de Credito"
                         },
                         new

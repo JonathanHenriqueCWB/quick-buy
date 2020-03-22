@@ -7,43 +7,43 @@ namespace QuickBuy.Repository.Repositorios
 {
     public class BaseRepositorio<TEntity> : IBaseRepositorio<TEntity> where TEntity : class
     {
-        protected readonly QuickBuyContexto Contexto;
+        protected readonly QuickBuyContexto Context;
         public BaseRepositorio(QuickBuyContexto contexto)
         {
-            Contexto = contexto;
+            Context = contexto;
         }
 
         public void Adicionar(TEntity entity)
         {
-            Contexto.Set<TEntity>().Add(entity);
-            Contexto.SaveChanges();
+            Context.Set<TEntity>().Add(entity);
+            Context.SaveChanges();
         }
 
         public void Atualizar(TEntity entity)
         {
-            Contexto.Set<TEntity>().Update(entity);
-            Contexto.SaveChanges();
+            Context.Set<TEntity>().Update(entity);
+            Context.SaveChanges();
         }
 
         public void Remover(TEntity entity)
-        {
-            Contexto.Set<TEntity>().Remove(entity);
-            Contexto.SaveChanges();
+        {  
+            Context.Set<TEntity>().Remove(entity);
+            Context.SaveChanges();
         }
 
         public IEnumerable<TEntity> ObterTodos()
         {
-            return Contexto.Set<TEntity>().ToList();
+            return Context.Set<TEntity>().ToList();
         }
                
         public TEntity ObterPorId(int id)
         {
-            return Contexto.Set<TEntity>().Find(id);
+            return Context.Set<TEntity>().Find(id);
         }
 
         public void Dispose()
         {
-            Contexto.Dispose();
+            Context.Dispose();
         }
     }
 }

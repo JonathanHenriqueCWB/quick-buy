@@ -13,25 +13,45 @@ namespace QuickBuy.Repository.Contexto
 
         public void Seed()
         {
-            //É necessário testar para ver se a tabela já está populada
+
             if (_contexto.FormaPagamentos.Any())
             {
                 return;
             }
 
-            //FormaPagamento fm1 = new FormaPagamento(1, "Boleto", "Forma de pagamento Boleto");
-            //FormaPagamento fm2 = new FormaPagamento(2, "Cartao de Credito", "Forma de pagamento Cartao");
-            //FormaPagamento fm3 = new FormaPagamento(3, "Deposito", "Forma de pagamento Deposito");
+            FormaPagamento f1 = new FormaPagamento()
+            {
+                FormaPagamentoId = 1,
+                Nome = "Boleto",
+                Descricao = "Forma de pagamento Boleto"
+            };
 
-            //_contexto.FormaPagamentos.AddRange(fm1, fm2, fm3);
-            //_contexto.SaveChanges();
+            FormaPagamento f2 = new FormaPagamento()
+            {
+                FormaPagamentoId = 2,
+                Nome = "Cartão de Credito",
+                Descricao = "Forma de pagamento Cartão de Credito"
+            };
+
+            FormaPagamento f3 = new FormaPagamento
+            {
+                FormaPagamentoId = 3,
+                Nome = "Deposito",
+                Descricao = "Forma de pagamento Deposito"
+            };
+
+            _contexto.FormaPagamentos.AddRange(f1, f2, f3);
+            _contexto.SaveChanges();
         }
     }
 }
 
-    /*
-     * Classe serve como apoio para o sitema, populara alguns dados já definidos
-     * para base de dados, ou seja, dados que precisam ser inseridos
-     * para o funcionamento do sistema inicialmente.
-     * 
-     */
+/*
+ * Classe serve como apoio para o sitema, populara alguns dados já definidos
+ * para base de dados, ou seja, dados que precisam ser inseridos
+ * para o funcionamento do sistema inicialmente.
+ * 
+ * Esse processo só será executado quando inicar o projeto pela 
+ * primeira vez, diferente da carga do contexto que gera uma 
+ * migration e sobe junto com banco de dados.
+ */

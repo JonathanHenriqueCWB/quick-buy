@@ -9,8 +9,8 @@ using QuickBuy.Repository.Contexto;
 namespace QuickBuy.Repository.Migrations
 {
     [DbContext(typeof(QuickBuyContexto))]
-    [Migration("20200316183026_CargaFormaPagamentoContexto")]
-    partial class CargaFormaPagamentoContexto
+    [Migration("20200321182031_SeedingServiceCargaInicial")]
+    partial class SeedingServiceCargaInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -159,7 +159,7 @@ namespace QuickBuy.Repository.Migrations
                         new
                         {
                             FormaPagamentoId = 2,
-                            Descricao = "Forma de pajgamento Cartão de Credito",
+                            Descricao = "Forma de pagamento Cartão de Credito",
                             Nome = "Cartão de Credito"
                         },
                         new
