@@ -5,42 +5,27 @@ namespace QuickBuy.Domain.Entidades
 {
     public abstract class Entidade
     {
-        //PROPERTIES
-        #region _mensagemValidacao
         private List<string> _mensagensValidacao { get; set; }
-        #endregion
-        #region mensagemValidacao
-        private List<string> mensagemValidacao {
-            get { return _mensagensValidacao ?? (_mensagensValidacao = new List<string>()); }
-         }
-        #endregion
-        #region EhValido
-        /*Propridedade so com get, retorna um valor booleano true caso não
-         tenha nenhuma mensagem de validaçao que foi violada*/
+        private List<string> mensagemValidacao {  
+            get { return _mensagensValidacao ?? (_mensagensValidacao = new List<string>()); } 
+        }
+
+        public abstract void Validate();
+
         protected bool EhValidado
         {
             get { return !mensagemValidacao.Any(); }
-        }
-        #endregion
+        }        
 
-        //Métodos abstratos
-        #region Validadte
-        public abstract void Validate();
-        #endregion
-
-        //Métodos da classe
-        #region LimparMensagemValidacao
-        protected void LimparMensagemValidacao()
+        protected void LimparCritica()
         {
             mensagemValidacao.Clear();
         }
-        #endregion
-        #region AdicionarCritica
+
         protected void AdicionarCritica(string mensagem)
         {
             mensagemValidacao.Add(mensagem);
         }
-        #endregion
     }
 }
 

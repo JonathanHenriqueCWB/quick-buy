@@ -28,13 +28,13 @@ namespace QuickBuy.Domain.Entidades
         public int FormaPagamentoId { get; set; }
         public virtual FormaPagamento FormaPagamento { get; set; }
         #endregion
-
+        #region Lista ItemPedidos
         public virtual ICollection<ItemPedido> ItemPedidos { get; set; }
+        #endregion
 
-        #region Método/Validate herdada da classe pai Entidade
         public override void Validate()
         {
-            LimparMensagemValidacao();
+            LimparCritica();
 
             if (!ItemPedidos.Any())
                 AdicionarCritica("Crítica - Pedido não pode ficar sem item de pedido");
@@ -42,6 +42,5 @@ namespace QuickBuy.Domain.Entidades
             if (string.IsNullOrEmpty(Endereco.Cep))
                 AdicionarCritica("Crítica - CEP deve estar preenchido");
         }
-        #endregion
     }
 }

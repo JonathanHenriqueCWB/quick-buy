@@ -16,7 +16,7 @@ namespace QuickBuy.Web.Controllers
 
         [HttpGet]
         public IActionResult Get()
-        {
+        { 
             try
             {
                 return Ok(_produtoRepositorio.ObterTodos());

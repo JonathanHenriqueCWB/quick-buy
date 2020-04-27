@@ -27,14 +27,24 @@ namespace QuickBuy.Domain.Entidades
         [Compare("Senha", ErrorMessage = "Os campos não coincidem!")]
         public string ConfirmaSenha { get; set; }
         #endregion
-
+        #region Lista de pedidos
         public virtual ICollection<Pedido> Pedidos { get; set; }
+        #endregion
 
-        #region Método/Função Validade implementado da classe pai Entidade
         public override void Validate()
         {
-            throw new System.NotImplementedException();
+            LimparCritica();
+
+            if (string.IsNullOrEmpty(Nome))
+                AdicionarCritica("Nome não foi informado");
+            if (string.IsNullOrEmpty(SobreNome))
+                AdicionarCritica("Sobre nome não foi informado");
+            if (string.IsNullOrEmpty(Email))
+                AdicionarCritica("Eamil não informado");
+            if (string.IsNullOrEmpty(Senha))
+                AdicionarCritica("Senha não foi informado");
+            if (Senha != ConfirmaSenha)
+                AdicionarCritica("As senha devem ser igual");
         }
-        #endregion
     }
 }

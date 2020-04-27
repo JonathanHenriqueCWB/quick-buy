@@ -14,12 +14,18 @@
         #region Preco
         public decimal Preco { get; set; }
         #endregion
-
-        #region Validade da classe pai Entidades
+        
         public override void Validate()
         {
-            throw new System.NotImplementedException();
+            LimparCritica();
+
+            if (string.IsNullOrEmpty(Nome))
+                AdicionarCritica("Nome não informado");
+            if (string.IsNullOrEmpty(Descricao))
+                AdicionarCritica("Descrição não informado");
+            if (Preco == 0)
+                AdicionarCritica("Preço não informado");
         }
-        #endregion
     }
 }
+

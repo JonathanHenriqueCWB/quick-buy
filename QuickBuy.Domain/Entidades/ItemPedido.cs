@@ -13,11 +13,13 @@
         public virtual Produto Produto { get; set; }
         #endregion
 
-        #region Método/Função validade herdado da classe pai Entidade
+
         public override void Validate()
         {
-            throw new System.NotImplementedException();
+            LimparCritica();
+
+            if (Quantidade == 0)
+                AdicionarCritica("Quantidade não foi informada");
         }
-        #endregion
     }
 }

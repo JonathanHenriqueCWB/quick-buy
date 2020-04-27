@@ -34,9 +34,9 @@ namespace QuickBuy.Web
             #region Configuração da string de conexão com MySql
             //var conectionString = Configuration.GetConnectionString("MySqlConnection");
             services.AddDbContext<QuickBuyContexto>(option => option
-                    .UseLazyLoadingProxies()
-                    .UseMySql(Configuration.GetConnectionString("MySqlConnection")
-                    , m => m.MigrationsAssembly("QuickBuy.Repository")));
+            .UseLazyLoadingProxies()
+            .UseMySql(Configuration.GetConnectionString("MySqlConnection")
+            , m => m.MigrationsAssembly("QuickBuy.Repository")));
             #endregion
             #region DI
             services.AddScoped<SeedingService>();
@@ -87,10 +87,12 @@ namespace QuickBuy.Web
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    //Configuração padrão
+                    //spa.UseAngularCliServer(npmScript: "start");
+
                     /*Caso queira trabalhar com Angular de forma separada ao ASP,
                     devera dar um start no termina: npm start (não utilizar ng serve)*/
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
         }
