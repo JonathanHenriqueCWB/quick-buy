@@ -145,5 +145,8 @@
       }
     }
   },
-  "defaultProject": "QuickBuy.Web"
+  "defaultProject": "QuickBuy.Web",
+  "cli": {
+    "analytics": false
+  }
 }
