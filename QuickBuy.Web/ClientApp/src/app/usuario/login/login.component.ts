@@ -15,8 +15,9 @@ export class LoginComponent {
   }
 
   //Método criado para testar o two-way data binding
-  MostrarDados() {
-    alert("Email : " + this.usuario.email + ", " + "Senha: " + this.usuario.senha);
-  }
-  
+  entrar() {
+    if (this.usuario.email == "zero@email.com" && this.usuario.senha == "Zero@1234") {
+
+    }    
+  }  
 }

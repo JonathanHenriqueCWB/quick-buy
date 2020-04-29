@@ -3,23 +3,43 @@
     <h1 class="h4 mb-3 login">Login de Usuario</h1>
 
     <label for="inputEmail" class="sr-only">Email</label>
-    <input
-           type="email"
+    <input type="email"
            id="inputEmail"
            name="email"
            placeholder="Digite o Email"
            class="form-control mb-2"
-           [(ngModel)]="usuario.email"  />
+           [(ngModel)]="usuario.email"
+           #email="ngModel"
+           required
+           email />
+
+    <!--Validaões das propriedades do html5 do email-->
+    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors.required">
+        Campo email obrigatorio!
+      </div>
+      <div *ngIf="email.errors.email">
+        Email invalido!
+      </div>
+    </div>
 
     <label for="inputSenha" class="sr-only">Senha</label>
-    <input
-           type="password"
+    <input type="password"
            id="inputSenha"
            name="senha"
            placeholder="Informe a Senha"
            class="form-control mb-2"
-           [(ngModel)]="usuario.senha" />
+           [(ngModel)]="usuario.senha"
+           #senha="ngModel"
+           required/>
 
-    <button type="submit" class="btn btn-primary btn-block mb-2" (click)="MostrarDados()">Entrar</button>
+    <!--Validaões das propriedades do html5 da senha-->
+    <div class="alert alert-danger" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+      <div *ngIf="senha.errors.required">
+        Campo senha obrigatório!
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-2" (click)="entrar()">Entrar</button>
   </form>  
 </div>
