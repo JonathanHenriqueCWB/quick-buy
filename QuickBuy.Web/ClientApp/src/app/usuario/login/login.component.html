@@ -8,15 +8,19 @@
            name="email"
            placeholder="Digite o Email"
            class="form-control mb-2"
-           [(ngModel)]="usuario.email"
            #email="ngModel"
+           [(ngModel)]="usuario.email"
+           [ngClass]="{
+            'is-invalid': email.invalid && (email.dirty || email.touched),
+            'is-valid': email.valid && (email.dirty || email.touched)
+           }"           
            required
            email />
 
     <!--Validaões das propriedades do html5 do email-->
-    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+    <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
       <div *ngIf="email.errors.required">
-        Campo email obrigatorio!
+        Campo Obrigatorio!
       </div>
       <div *ngIf="email.errors.email">
         Email invalido!
@@ -29,14 +33,18 @@
            name="senha"
            placeholder="Informe a Senha"
            class="form-control mb-2"
-           [(ngModel)]="usuario.senha"
            #senha="ngModel"
+           [(ngModel)]="usuario.senha"
+           [ngClass]="{
+            'is-invalid': senha.invalid && (senha.dirty || senha.touched),
+            'is-valid': senha.valid && (senha.dirty || senha.touched)
+           }"           
            required/>
 
     <!--Validaões das propriedades do html5 da senha-->
-    <div class="alert alert-danger" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+    <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
       <div *ngIf="senha.errors.required">
-        Campo senha obrigatório!
+        Campo Obrigatório
       </div>
     </div>
 
