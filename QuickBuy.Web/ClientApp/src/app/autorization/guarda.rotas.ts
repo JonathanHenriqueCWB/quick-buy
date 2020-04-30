@@ -11,8 +11,8 @@ export class GuardaRotas implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    //this.router.navigate(['/entrar']); //Chamar a rota para o redirecionamento
-    return true;
+    this.router.navigate(['/entrar']); //Chamar a rota para o redirecionamento
+    return false;
   }
 }
 
