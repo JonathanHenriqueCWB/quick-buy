@@ -1,0 +1,18 @@
+﻿Configuração da sessão no projeto de angular
+Para controlar a sesão de um projeto .Net Core com angular não é utilizado o identity framework
+e sim uma web store, ou seja, uma localStorage ou sessionStorage.
+
+Comfiguração
+	1 - Criar uma pastar junto aos componentes do angular (autorization)
+	2 - Criar uma classe typeScript dentro da mesma pasta (guarda-rotas.ts)
+	4 - Classe guarda-rotas ira implementar a interface CanActivate, e utilizar
+		do Router como injeção de dependencia.
+	4 - Dados que serão validados virão do template (to-way data binding) para o componente
+	5 - Componente que irá tratar dos dados vido do template precisará utilizar o Router e a DI
+	6 - Configurar RouteModule para os componentes que precisam de permissão.
+	7 - Configurar o template do nav-menu para mostrar menu sair caso usuario tenha logado no sistema.
+	8 - Validações devem ser feitas no componente do nav-menu.
+
+Obs: Para saber quem poderá acessar a rota restrita, e necessario criar uma sessão no componente
+de login (entrar). Lá deve ser feita a validação do susuario se existe a partir do banco de dados,
+e criar uma sessão com valores booleano que serão recuperados na classe guarda-rotas.
