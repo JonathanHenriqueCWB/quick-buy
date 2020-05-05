@@ -11,7 +11,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { LoginComponent } from './usuario/login/login.component';
+
 import { GuardaRotas } from './autorization/guarda.rotas';
+import { UsuarioService } from './services/usuario/usuario.services';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { GuardaRotas } from './autorization/guarda.rotas';
       { path: 'entrar', component: LoginComponent },
     ])
   ],
-  providers: [],
+  providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
