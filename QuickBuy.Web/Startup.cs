@@ -41,6 +41,7 @@ namespace QuickBuy.Web
             #region DI
             services.AddScoped<SeedingService>();
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>(); 
             #endregion
 
             // In production, the Angular files will be served from this directory

@@ -41,7 +41,7 @@
            }"           
            required/>
 
-    <!--Validaões das propriedades do html5 da senha-->
+    <!--Validaões de forumulario (client side)-->
     <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
       <div *ngIf="senha.errors.required">
         Campo Obrigatório
@@ -49,5 +49,10 @@
     </div>
 
     <button type="submit" class="btn btn-primary btn-block mb-2" (click)="entrar()">Entrar</button>
+
+    <!--Validação por parte de servidor (server side), vindo do componente.ts-->
+    <div class="alert alert-danger" *ngIf="mensagem">
+      {{ mensagem }}
+    </div>
   </form>  
 </div>

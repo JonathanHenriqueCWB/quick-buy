@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   public usuario;
   public returnUrl: string;
+  public mensagem: string
 
   constructor(private router: Router, private activateRouter: ActivatedRoute, private usuarioService: UsuarioService) {
   }
@@ -24,14 +25,20 @@ export class LoginComponent implements OnInit {
 
   //Método criado para testar o two-way data binding
   entrar() {
-
     this.usuarioService.verificarUsuario(this.usuario).subscribe(
-      data => {
+      data => {        
+        this.usuarioService.usuario = data;
 
+        if (this.returnUrl == null) {
+          this.router.navigate(['/']);
+        } else {
+          this.router.navigate([this.returnUrl]);
+        }        
       },
-      erro => {
-
+      err => {
+        console.log(err.error);
+        this.mensagem = err.error;
       } 
     );
-  }  
+  }
 }
