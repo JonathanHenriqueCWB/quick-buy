@@ -7,10 +7,6 @@ namespace QuickBuy.Repository.Contexto
 {
     public class QuickBuyContexto : DbContext
     {
-        public QuickBuyContexto(DbContextOptions options) : base(options)
-        {
-        }
-
         #region DbSet
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
@@ -18,9 +14,15 @@ namespace QuickBuy.Repository.Contexto
         public DbSet<ItemPedido> ItemPedidos { get; set; }
         public DbSet<FormaPagamento> FormaPagamentos { get; set; }
         #endregion
+
+
+        public QuickBuyContexto(DbContextOptions options) : base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            #region Classes de mapeamento aqui..
+            #region Configuração de mapeamento
             modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoConfiguration());

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public usuario;
   public returnUrl: string;
   public mensagem: string
+  public btnSpinner: boolean;
 
   constructor(private router: Router, private activateRouter: ActivatedRoute, private usuarioService: UsuarioService) {
   }
@@ -25,19 +26,22 @@ export class LoginComponent implements OnInit {
 
   //Método criado para testar o two-way data binding
   entrar() {
+    this.btnSpinner = true;
     this.usuarioService.verificarUsuario(this.usuario).subscribe(
-      data => {        
-        this.usuarioService.usuario = data;
+      data => {
+        //console.log(data);
+        this.usuarioService.usuario = data; //Propertie da classe de serviço usuario
 
         if (this.returnUrl == null) {
           this.router.navigate(['/']);
         } else {
           this.router.navigate([this.returnUrl]);
-        }        
+        }
       },
       err => {
         console.log(err.error);
         this.mensagem = err.error;
+        this.btnSpinner = false;
       } 
     );
   }
