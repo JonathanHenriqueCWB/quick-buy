@@ -46,7 +46,20 @@ export class UsuarioService {
       email: usuario.email,
       senha: usuario.senha
     }
+
     //this.baseURL = Raiz do site, exemplo: http://www.quickbuy.com/
     return this.http.post<Usuario>(this.baseURL + "api/usuario/veriricarUsuario", body, { headers });
+  }
+
+  public cadastrarUsuario(usuario: Usuario): Observable<Usuario> {
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    var body = {
+      email: usuario.email,
+      senha: usuario.senha,
+      nome: usuario.nome,
+      sobrenome: usuario.sobrenome
+    }
+
+    return this.http.post<Usuario>(this.baseURL + "api/usuario", body, { headers });
   }
 }
