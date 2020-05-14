@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using QuickBuy.Domain.Contratos;
 using QuickBuy.Domain.Entidades;
+using System;
 
 namespace QuickBuy.Web.Controllers
 {
@@ -23,7 +24,7 @@ namespace QuickBuy.Web.Controllers
             {
                 return Ok();
             }
-            catch (Exeption ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.ToString());
             }
@@ -36,7 +37,7 @@ namespace QuickBuy.Web.Controllers
             {
                 return Ok();
             }
-            catch (Exeption ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.ToString());
             }
@@ -55,7 +56,7 @@ namespace QuickBuy.Web.Controllers
                 }
                 return BadRequest("Usuario ou senha invalido");
             }
-            catch (Exeption ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.ToString());
             }
