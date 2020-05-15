@@ -13,6 +13,7 @@ import { LoginComponent } from './usuario/login/login.component';
 import { GuardaRotas } from './autorization/guarda.rotas';
 import { UsuarioService } from './services/usuario/usuario.services';
 import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
+import { ProdutoService } from './services/produto/produto.services';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.co
       { path: 'cadastrar-usuario', component: CadastroUsuarioComponent }
     ])
   ],
-  providers: [UsuarioService],
+  providers: [UsuarioService, ProdutoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

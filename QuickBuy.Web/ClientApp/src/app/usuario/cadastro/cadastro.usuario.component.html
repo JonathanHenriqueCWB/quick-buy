@@ -116,10 +116,11 @@
       Senhas diferentes!
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block mb-2" (click)="cadastrarUsuario()" [disabled]="btnSpinner || !verificarSenha()">
+    <button type="submit" class="btn btn-primary btn-block mb-2" (click)="cadastrar()" [disabled]="btnSpinner || !verificarSenha()">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="btnSpinner"></span>
-      Entrar
+      Cadastrar
     </button>
+    <a [routerLink]='["/entrar"]'>Voltar</a>
 
     <!--Validação por parte de servidor (server side), vindo do componente.ts-->
     <div class="alert alert-danger" *ngIf="mensagem">

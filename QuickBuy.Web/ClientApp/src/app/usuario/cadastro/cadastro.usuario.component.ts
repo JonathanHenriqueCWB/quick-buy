@@ -22,7 +22,7 @@ export class CadastroUsuarioComponent implements OnInit {
     return this.usuario.senha === this.usuario.confirmaSenha;
   }
 
-  public cadastrarUsuario() {
+  public cadastrar() {
     this.usuarioService.cadastrarUsuario(this.usuario).subscribe(
       data => {
 
