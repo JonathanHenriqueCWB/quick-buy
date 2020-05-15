@@ -1,1 +1,130 @@
-<h1>Cadastro de usuario</h1>
+<div class="text-center">
+  <form class="form-signin">
+
+    <h1 class="h4 mb-3 login">Login de Usuario</h1>
+
+    <!--NOME-->
+    <label for="inputNome" class="sr-only">Nome</label>
+    <input type="text"
+           id="inputNome"
+           name="nome"
+           placeholder="Digite o Nome"
+           class="form-control mb-2"
+           #nome="ngModel"
+           [(ngModel)]="usuario.nome"
+           [ngClass]="{
+            'is-invalid': nome.invalid && (nome.dirty || nome.touched),
+            'is-valid': nome.valid && (nome.dirty || nome.touched)
+           }"
+           required />
+
+    <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+      <div *ngIf="nome.errors.required">
+        Campo Nome Obrigatorio!
+      </div>
+    </div>
+
+    <!--SOBRENOME-->
+    <label for="inputSobrenome" class="sr-only">Sobrenome</label>
+    <input type="text"
+           id="inputSobrenome"
+           name="sobrenome"
+           placeholder="Digite o Sobrenome"
+           class="form-control mb-2"
+           #sobrenome="ngModel"
+           [(ngModel)]="usuario.sobrenome"
+           [ngClass]="{
+            'is-invalid': sobrenome.invalid && (sobrenome.dirty || sobrenome.touched),
+            'is-valid': sobrenome.valid && (sobrenome.dirty || sobrenome.touched)
+           }"
+           required />
+
+    <div class="invalid-feedback mb-2" *ngIf="sobrenome.invalid && (sobrenome.dirty || sobrenome.touched)">
+      <div *ngIf="sobrenome.errors.required">
+        Campo Sobrenome Obrigatorio!
+      </div>
+    </div>
+
+    <!--EMAIL-->
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email"
+           id="inputEmail"
+           name="email"
+           placeholder="Digite o Email"
+           class="form-control mb-2"
+           #email="ngModel"
+           [(ngModel)]="usuario.email"
+           [ngClass]="{
+            'is-invalid': email.invalid && (email.dirty || email.touched),
+            'is-valid': email.valid && (email.dirty || email.touched)
+           }"
+           required
+           email />
+
+    <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors.required">
+        Campo Email Obrigatorio!
+      </div>
+      <div *ngIf="email.errors.email">
+        Email invalido!
+      </div>
+    </div>
+
+    <!--SENHA-->
+    <label for="inputSenha" class="sr-only">Senha</label>
+    <input type="password"
+           id="inputSenha"
+           name="senha"
+           placeholder="Informe a Senha"
+           class="form-control mb-2"
+           #senha="ngModel"
+           [(ngModel)]="usuario.senha"
+           [ngClass]="{
+            'is-invalid': senha.invalid && (senha.dirty || senha.touched),
+            'is-valid': senha.valid && (senha.dirty || senha.touched)
+           }"
+           required />
+
+    <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+      <div *ngIf="senha.errors.required">
+        Campo Senha Obrigatório
+      </div>
+    </div>
+
+    <!--CONFIRMA SENHA-->
+    <label for="inputConfirmaSenha" class="sr-only">Confirma Senha</label>
+    <input type="password"
+           id="inputConfirmaSenha"
+           name="confirmaSenha"
+           placeholder="Confirme a Senha"
+           class="form-control mb-2"
+           #confirmaSenha="ngModel"
+           [(ngModel)]="usuario.confirmaSenha"
+           [ngClass]="{
+            'is-invalid': !verificarSenha(),
+            'is-valid': verificarSenha() && usuario.confirmaSenha != null
+           }"
+           required />
+
+    <div class="invalid-feedback mb-2" *ngIf="confirmaSenha.invalid && (confirmaSenha.dirty || confirmaSenha.touched)">
+      <div *ngIf="confirmaSenha.errors.required">
+        Campo Confirmar Senhya Obrigatório
+      </div>
+    </div>
+
+    <div *ngIf="!verificarSenha() && usuario.confirmaSenha != null" class="invalid-feedback">
+      Senhas diferentes!
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-2" (click)="cadastrarUsuario()" [disabled]="btnSpinner || !verificarSenha()">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="btnSpinner"></span>
+      Entrar
+    </button>
+
+    <!--Validação por parte de servidor (server side), vindo do componente.ts-->
+    <div class="alert alert-danger" *ngIf="mensagem">
+      {{ mensagem }}
+    </div>
+
+  </form>
+</div>

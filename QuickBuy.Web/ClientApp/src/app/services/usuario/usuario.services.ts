@@ -56,6 +56,7 @@ export class UsuarioService {
     var body = {
       email: usuario.email,
       senha: usuario.senha,
+      confirmarSenha: usuario.confirmaSenha,
       nome: usuario.nome,
       sobrenome: usuario.sobrenome
     }

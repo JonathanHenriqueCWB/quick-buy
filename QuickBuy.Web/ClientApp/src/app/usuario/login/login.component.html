@@ -53,6 +53,16 @@
       Entrar
     </button>
 
+    <div class="row">
+      <div class="col-sm-6 text-left">
+        <p>Não possue uma conta?</p>
+      </div>
+      <div class="col-sm-6 text-right">
+        <a [routerLink]='["/cadastrar-usuario"]'>Cadastre-se aqui</a>
+      </div>
+    </div>
+    
+
     <!--Validação por parte de servidor (server side), vindo do componente.ts-->
     <div class="alert alert-danger" *ngIf="mensagem">
       {{ mensagem }}

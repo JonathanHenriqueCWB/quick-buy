@@ -18,6 +18,10 @@ export class CadastroUsuarioComponent implements OnInit {
     this.usuario = new Usuario();
   }
 
+  public verificarSenha(): boolean {
+    return this.usuario.senha === this.usuario.confirmaSenha;
+  }
+
   public cadastrarUsuario() {
     this.usuarioService.cadastrarUsuario(this.usuario).subscribe(
       data => {
