@@ -27,7 +27,7 @@ export class ProdutoService {
 
   public alterarProduto(produto: Produto): Observable<Produto> {
 
-    const header = new HttpHeaders().set('content-type', 'application/jeson');
+    const headers = new HttpHeaders().set('content-type', 'application/jeson');
     var body = {
       nome: produto.nome,
       descricao: produto.descricao,
