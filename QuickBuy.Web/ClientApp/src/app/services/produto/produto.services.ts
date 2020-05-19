@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 
@@ -7,43 +7,45 @@ import { Produto } from '../../model/produto';
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutoService {
+export class ProdutoService implements OnInit {
 
+  //VARIVAEIS
   private _baseUrl: string;
+  public produtos: Produto[];
+
+  //PROPRIEDADE
+  get headers(): HttpHeaders {
+    return new HttpHeaders().set('content-type', 'application/json');
+  }
+
+  //CONSTRUTOR COM INJEÇÃO DE DEPENDENCIA
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this._baseUrl = baseUrl;
   }
 
-  public cadastrarProduto(produto: Produto): Observable<Produto> {
+  //MÉTODO IMPLEMENTADO DO ONINIT
+  ngOnInit(): void {
+    this.produtos = [];
+  }
 
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-    var body = {
-      nome: produto.nome,
-      descricao: produto.descricao,
-      preco: produto.preco
-    };
-    return this.http.post<Produto>(this._baseUrl + "api/produto/cadastrar", body, { headers });
+  //MÉTODOS
+  public cadastrarProduto(produto: Produto): Observable<Produto> {
+    return this.http.post<Produto>(this._baseUrl + "api/produto/cadastrar", JSON.stringify(produto), { headers: this.headers });
   }
 
   public alterarProduto(produto: Produto): Observable<Produto> {
-
-    const headers = new HttpHeaders().set('content-type', 'application/jeson');
-    var body = {
-      nome: produto.nome,
-      descricao: produto.descricao,
-      preco: produto.preco
-    };
-    return this.http.post<Produto>(this._baseUrl + "api/produto/alterar", body, { headers });
+    return this.http.post<Produto>(this._baseUrl + "api/produto/alterar", JSON.stringify(produto), { headers: this.headers });
   }
 
   public deletarProduto(produto: Produto): Observable<Produto> {
+    return this.http.post<Produto>(this._baseUrl + "api/produto/deletar", JSON.stringify(produto), { headers: this.headers });
+  }
 
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-    var body = {
-      nome: produto.nome,
-      descricao: produto.descricao,
-      preco: produto.preco
-    }
-    return this.http.post<Produto>(this._baseUrl + "api/produto/deletar", body, { headers });
+  public listarProduto(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this._baseUrl + "api/produto/");
+  }
+
+  public obterProduto(produto: Produto): Observable<Produto> {
+    return this.http.get<Produto>(this._baseUrl + "api/produto");
   }
 }
