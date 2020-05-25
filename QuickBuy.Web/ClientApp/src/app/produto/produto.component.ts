@@ -1,15 +1,34 @@
-import { Component } from "@angular/core"; 
+import { Component, OnInit } from "@angular/core"; 
+import { ProdutoService } from "../services/produto/produto.services";
+import { Produto } from "../model/produto";
 
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.css']
 })
-export class ProdutoComponent {
+export class ProdutoComponent implements OnInit {
 
-  public nome: string;
+  public produto: Produto;
 
-  public obterNome(): string {
-    return "Apple";
+  ngOnInit(): void {
+    this.produto = new Produto();
+  }
+
+  constructor(private produtoService: ProdutoService) {
+  }
+
+  public cadastrar() {
+    console.log("Cadastrando produto");
+    /*
+    this.produtoService.cadastrarProduto(this.produto).subscribe(
+      data => {
+        console.log("Json preenchido!");
+      },
+      err => {
+        console.log("Erro no retorno do json " + err.error);
+      }
+    );
+    */
   }
 }

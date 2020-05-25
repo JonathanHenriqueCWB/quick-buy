@@ -1,4 +1,47 @@
-<section>
-  <h3>Componente de Produtos</h3>
-  <p>Produtos: {{ obterNome() }}</p>
-</section>
+<h1 class="h4 titulo">Cadastro de produto</h1>
+
+<form>
+  <label for="inputNome" class="sr-only">Nome</label>
+  <input type="text" id="inputNome" name="nome" placeholder="Nome do produto" required
+         class="form-control mb-2 col-md-6"
+         #nome="ngModel" [(ngModel)]="produto.nome" [ngClass]="" />
+  <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+    <div *ngIf="nome.errors.required">
+      Nome invalido
+    </div>
+  </div>
+
+  <label for="inputDescricao" class="sr-only">Descição</label>
+  <input type="text" id="inputDescricao" name="descricao" placeholder="Descrição do produto" required
+         class="form-control mb-2 col-md-6"
+         #descricao="ngModel" [(ngModel)]="produto.descricao" [ngClass]="" />
+  <div class="invalid-feedback mb-2" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
+    <div *ngIf="descricao.errors.required">
+      Descrição invalido
+    </div>
+  </div>
+
+  <label for="inputPreco" class="sr-only">Preço</label>
+  <input type="number" id="inputPreco" name="preco" placeholder="Preço do produto" required
+         class="form-control mb-2 col-md-6"
+         #preco="ngModel" [(ngModel)]="produto.preco" [ngClass]="" />
+  <div class="invalid-feedback mb-2" *ngIf="preco.invalid && (preco.dirty || preco.touched)">
+    <div *ngIf="preco.errors.required">
+      Preço invalido
+    </div>
+  </div>
+
+  <div class="custom-file col-md-6 mb-2">
+    <label class="custom-file-label" for="inputArquivo">Choose file</label>
+    <input type="file" id="inputArquivo"
+           class="custom-file-input" />
+  </div>
+
+  <input type="submit" value="Cadastrar produto"
+         class="btn btn-primary btn-block col-md-6"
+         (click)="cadastrar()"/>
+</form>
+
+<h6>Testando binding banana in a box <p class="text-danger">{{ produto.nome }}</p></h6>
+<h6>Testando binding banana in a box <p class="text-danger">{{ produto.descricao }}</p></h6>
+<h6>Testando binding banana in a box <p class="text-danger">{{ produto.preco }}</p></h6>

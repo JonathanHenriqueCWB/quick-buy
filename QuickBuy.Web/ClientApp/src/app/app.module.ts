@@ -30,7 +30,7 @@ import { ProdutoService } from './services/produto/produto.services';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
+      { path: 'produto', component: ProdutoComponent },
       { path: 'entrar', component: LoginComponent },
       { path: 'cadastrar-usuario', component: CadastroUsuarioComponent }
     ])
