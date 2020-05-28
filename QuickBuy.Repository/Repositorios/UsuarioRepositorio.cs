@@ -11,9 +11,15 @@ namespace QuickBuy.Repository.Repositorios
         public UsuarioRepositorio(QuickBuyContexto contexto) : base(contexto)
         {
         }
-        public Usuario ValidarLogin(string email, string senha)
+
+        public Usuario Verificar(string email, string senha)
         {
             return Context.Usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
+        }
+
+        public Usuario Verificar(string email)
+        {
+            return Context.Usuarios.FirstOrDefault(u => u.Email == email);
         }
     }
 }

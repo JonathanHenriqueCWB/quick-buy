@@ -19,7 +19,6 @@ export class ProdutoComponent implements OnInit {
   }
 
   public cadastrar() {
-    console.log("Cadastrando produto");
     /*
     this.produtoService.cadastrarProduto(this.produto).subscribe(
       data => {

@@ -31,10 +31,17 @@ namespace QuickBuy.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post()
+        public ActionResult Post([FromBody] Usuario usuario)
         {
             try
             {
+                var usuarioCadastrado = _usuarioRepositorio.Verificar(usuario.Email);
+                if (usuarioCadastrado != null)
+                {
+                    return BadRequest("Usuario já se encontra cadastrado");
+                }
+
+                _usuarioRepositorio.Adicionar(usuario);
                 return Ok();
             }
             catch (Exception ex)
@@ -48,7 +55,7 @@ namespace QuickBuy.Web.Controllers
         {
             try
             {
-                var usuarioRetorno = _usuarioRepositorio.ValidarLogin(usuario.Email, usuario.Senha);
+                var usuarioRetorno = _usuarioRepositorio.Verificar(usuario.Email, usuario.Senha);
                 if (usuarioRetorno != null)
                 {
                     string u = JsonConvert.SerializeObject(usuarioRetorno);
