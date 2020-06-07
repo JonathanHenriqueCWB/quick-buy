@@ -9,6 +9,11 @@ import { UsuarioService } from '../services/usuario/usuario.services';
 })
 export class NavMenuComponent {
 
+  //Propertie somente leitura que retorna a instancia do usuario
+  get usuario() {
+    return this.usuarioService.usuario;
+  }
+
   //Construtor
   constructor(private router: Router, private usuarioService: UsuarioService) {
   }
@@ -23,8 +28,7 @@ export class NavMenuComponent {
     this.isExpanded = !this.isExpanded;
   }
 
-  // ESSA VERIFICAÇÃO SERVE SOMENTE PARA RENDERIZAR O LOGIN E LOGOUT
-  // Verefica se usuario está logado
+  //Função para verificar autenticação no sistema, se o usuario está ou não logado
   public usuarioLogado(): boolean {
     return this.usuarioService.verificarSessao();
   }
@@ -33,5 +37,4 @@ export class NavMenuComponent {
   sair() {
     this.usuarioService.limparSessao();
   }
-
 }

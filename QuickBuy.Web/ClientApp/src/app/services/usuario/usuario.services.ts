@@ -13,7 +13,7 @@ export class UsuarioService {
   private baseURL: string;
   private _usuario: Usuario;
 
-  //PROPERTIES
+  //Propriedades somente leitura que armazenam e recuperam o usuario da sessão
   set usuario(usuario: Usuario) {    
     sessionStorage.setItem('usuario-autenticado', JSON.stringify(usuario));
     this._usuario = usuario;
