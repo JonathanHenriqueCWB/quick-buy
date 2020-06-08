@@ -10,12 +10,18 @@ import { Produto } from "../model/produto";
 export class ProdutoComponent implements OnInit {
 
   public produto: Produto;
+  public arquivoSelecionado: File;
 
   ngOnInit(): void {
     this.produto = new Produto();
   }
 
   constructor(private produtoService: ProdutoService) {
+  }
+
+  public inputChange(files: FileList) {
+    this.arquivoSelecionado = files.item(0);
+    this.produtoService.enviarArquivo(this.arquivoSelecionado);
   }
 
   public cadastrar() {
