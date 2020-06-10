@@ -20,8 +20,15 @@ export class ProdutoComponent implements OnInit {
   }
 
   public inputChange(files: FileList) {
-    this.arquivoSelecionado = files.item(0);
-    this.produtoService.enviarArquivo(this.arquivoSelecionado);
+    var arquivoSelecionado = files.item(0);
+    this.produtoService.enviarArquivo(this.arquivoSelecionado).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   public cadastrar() {
