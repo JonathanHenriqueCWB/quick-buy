@@ -11,6 +11,7 @@ export class ProdutoComponent implements OnInit {
 
   public produto: Produto;
   public arquivoSelecionado: File;
+  public ativar_spinner: boolean;
 
   ngOnInit(): void {
     this.produto = new Produto();
@@ -20,10 +21,16 @@ export class ProdutoComponent implements OnInit {
   }
 
   public inputChange(files: FileList) {
-    var arquivoSelecionado = files.item(0);
+
+    this.arquivoSelecionado = files.item(0);
+    this.ativar_spinner = true;
+
     this.produtoService.enviarArquivo(this.arquivoSelecionado).subscribe(
       data => {
-        console.log(data);
+        this.produto.nomeArquivo = data;
+        alert(this.produto.nomeArquivo);
+        console.log("Retorno da web api: " + data);
+        this.ativar_spinner = false;
       },
       err => {
         console.log(err);

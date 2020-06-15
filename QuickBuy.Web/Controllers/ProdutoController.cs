@@ -56,24 +56,47 @@ namespace QuickBuy.Web.Controllers
         {
             try
             {
+                //Recupera o formData do produto.services no em um formFile
                 var formFile = _httpContextAccessor.HttpContext.Request.Form.Files["arquivoEnviado"];
+                //Recupera o nome do arquivo dentro do formFile
                 var nomeArquivo = formFile.FileName;
+                //Separa a extensão de arquivo para gerar um novo nome
                 var extensao = nomeArquivo.Split(".").Last();
-                var arrayNomeCompacto = Path.GetFileNameWithoutExtension(nomeArquivo).Take(10).ToArray();
-                var novoNome = new String(arrayNomeCompacto).Replace(" ", "-") + "." + extensao;
-                var pastaArquivos = _hostingEnvironment.WebRootPath + "\\Arquivos\\";
-                var nomeCompleto = pastaArquivos + novoNome;
 
-                using (var streamArquivo = new FileStream(nomeArquivo, FileMode.Create)) {
-                    formFile.CopyTo(streamArquivo);
-                }
+                string novoNome = GerarNovoNome(nomeArquivo, extensao);
+                SalvarArquivo(formFile, novoNome);
 
-                return Ok();
+                return Json(novoNome);
             }
             catch (Exception e)
             {
                 return BadRequest(e.ToString());
             }
         }
+
+
+        #region MÉTODOS UTILIZADOS PARA ENVIAR ARQUIVO PARA O SERVIDOR
+        private static string GerarNovoNome(string nomeArquivo, string extensao)
+        {
+            var arrayNomeCompacto = Path.GetFileNameWithoutExtension(nomeArquivo).Take(10).ToArray();
+            var novoNome = new String(arrayNomeCompacto).Replace(" ", "-");
+                       
+            novoNome = $"{novoNome}" + Guid.NewGuid().ToString() + $".{extensao}";
+            //novoNome = $"{novoNome}{DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.{extensao}";
+
+            return novoNome;
+        }
+
+        private void SalvarArquivo(IFormFile formFile, string novoNome)
+        {
+            var pastaArquivos = _hostingEnvironment.WebRootPath + "\\arquivos\\";
+            var nomeCompleto = pastaArquivos + novoNome;
+
+            using (var streamArquivo = new FileStream(nomeCompleto, FileMode.Create))
+            {
+                formFile.CopyTo(streamArquivo);
+            }
+        }
+        #endregion
     }
 }

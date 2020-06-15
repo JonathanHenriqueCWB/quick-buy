@@ -49,10 +49,12 @@ export class ProdutoService implements OnInit {
     return this.http.get<Produto>(this._baseUrl + "api/produto");
   }
 
-  public enviarArquivo(arquivoSelecionado: File): Observable<boolean> {
+  public enviarArquivo(arquivoSelecionado: File): Observable<string> {
+
+    //Criação de um IformData para o arquivo, deverá ser recuperado num formFile no ProdutoController
     const formData: FormData = new FormData();
     formData.append("arquivoEnviado", arquivoSelecionado, arquivoSelecionado.name);
 
-    return this.http.post<boolean>(this._baseUrl + "api/produto/enviarArquivo", formData);
+    return this.http.post<string>(this._baseUrl + "api/produto/enviarArquivo", formData);
   }
 }

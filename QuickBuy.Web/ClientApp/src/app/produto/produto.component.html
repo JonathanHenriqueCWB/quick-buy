@@ -42,10 +42,13 @@
 
   <div class="custom-file col-md-6 mb-2">
     <label class="custom-file-label" for="inputArquivo">Choose file</label>
-    <input type="file" id="inputArquivo" class="custom-file-input" (change)="inputChange($event.target.files)" />
+    <input type="file" id="inputArquivo"
+           class="custom-file-input"
+           (change)="inputChange($event.target.files)" />
   </div>
 
-  <input type="submit" value="Cadastrar produto"
-         class="btn btn-primary btn-block col-md-6"
-         (click)="cadastrar()" />
+  <button class="btn btn-primary btn-block col-md-6" (click)="cadastrar()" [disabled]="ativar_spinner">
+    <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner"></span>
+    Cadastrar
+  </button>
 </form>
