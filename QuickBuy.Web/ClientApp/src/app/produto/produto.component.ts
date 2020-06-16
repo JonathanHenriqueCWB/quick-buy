@@ -28,8 +28,6 @@ export class ProdutoComponent implements OnInit {
     this.produtoService.enviarArquivo(this.arquivoSelecionado).subscribe(
       data => {
         this.produto.nomeArquivo = data;
-        alert(this.produto.nomeArquivo);
-        console.log("Retorno da web api: " + data);
         this.ativar_spinner = false;
       },
       err => {

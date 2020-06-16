@@ -14,7 +14,8 @@
         #region Preco
         public decimal Preco { get; set; }
         #endregion
-        
+        public string NomeArquivo { get; set; }
+
         public override void Validate()
         {
             LimparCritica();

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuickBuy.Repository.Migrations
 {
-    public partial class CriandoBanco : Migration
+    public partial class RecriandoBanco : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,7 +47,8 @@ namespace QuickBuy.Repository.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(maxLength: 50, nullable: false),
                     Descricao = table.Column<string>(maxLength: 400, nullable: false),
-                    Preco = table.Column<decimal>(nullable: false)
+                    Preco = table.Column<decimal>(nullable: false),
+                    NomeArquivo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,6 +132,21 @@ namespace QuickBuy.Repository.Migrations
                         principalColumn: "ProdutoId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "FormaPagamentos",
+                columns: new[] { "FormaPagamentoId", "Descricao", "Nome" },
+                values: new object[] { 1, "Forma de pagamento Boleto", "Boleto" });
+
+            migrationBuilder.InsertData(
+                table: "FormaPagamentos",
+                columns: new[] { "FormaPagamentoId", "Descricao", "Nome" },
+                values: new object[] { 2, "Forma de pagamento Cartão de Credito", "Cartão de Credito" });
+
+            migrationBuilder.InsertData(
+                table: "FormaPagamentos",
+                columns: new[] { "FormaPagamentoId", "Descricao", "Nome" },
+                values: new object[] { 3, "Forma de pagamento Boleto", "Boleto" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ItemPedidos_PedidoId",

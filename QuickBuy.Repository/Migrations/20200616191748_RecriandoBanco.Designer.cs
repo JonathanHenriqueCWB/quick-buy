@@ -9,8 +9,8 @@ using QuickBuy.Repository.Contexto;
 namespace QuickBuy.Repository.Migrations
 {
     [DbContext(typeof(QuickBuyContexto))]
-    [Migration("20200321182031_SeedingServiceCargaInicial")]
-    partial class SeedingServiceCargaInicial
+    [Migration("20200616191748_RecriandoBanco")]
+    partial class RecriandoBanco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,6 +98,8 @@ namespace QuickBuy.Repository.Migrations
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("NomeArquivo");
 
                     b.Property<decimal>("Preco");
 
