@@ -14,7 +14,9 @@
         #region Preco
         public decimal Preco { get; set; }
         #endregion
+        #region NomeArquivo
         public string NomeArquivo { get; set; }
+        #endregion
 
         public override void Validate()
         {

@@ -42,12 +42,20 @@ namespace QuickBuy.Web.Controllers
         {
             try
             {
-                _produtoRepositorio.Adicionar(produto);
+                //Chama o método validade para verificar erros no modelo
+                produto.Validate();
+                //Verifica se o validade add erros no modelo
+                if (produto.VerificarErros)
+                {
+                    return BadRequest(produto.ObterMensagensValidacao());
+                }
+
+                //_produtoRepositorio.Adicionar(produto);
                 return Created("api/produto", produto);
 
             }catch(Exception e)
             {
-                return BadRequest(e.ToString());
+                return BadRequest("Erro no Produto controller " + e.ToString());
             }
         }
 
@@ -56,7 +64,7 @@ namespace QuickBuy.Web.Controllers
         {
             try
             {
-                //Recupera o formData do produto.services no em um formFile
+                //Recupera o formData do produto.services em um formFile
                 var formFile = _httpContextAccessor.HttpContext.Request.Form.Files["arquivoEnviado"];
                 //Recupera o nome do arquivo dentro do formFile
                 var nomeArquivo = formFile.FileName;

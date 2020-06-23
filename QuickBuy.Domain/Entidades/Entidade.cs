@@ -6,49 +6,47 @@ namespace QuickBuy.Domain.Entidades
     public abstract class Entidade
     {
         private List<string> _mensagensValidacao { get; set; }
-        private List<string> mensagemValidacao {  
-            get { return _mensagensValidacao ?? (_mensagensValidacao = new List<string>()); } 
-        }
 
+        public Entidade()
+        {
+            _mensagensValidacao = new List<string>();
+        }
+        
         public abstract void Validate();
 
-        protected bool EhValidado
+        #region Verifica se é valido e retornar lista de erros. Utilização na API
+        //Verefica se existe mensagem de erro na lista, caso sim retorna true
+        public bool VerificarErros
         {
-            get { return !mensagemValidacao.Any(); }
-        }        
-
+            get { return _mensagensValidacao.Any(); }
+        }
+        
+        //Junta todas as mensagens da lista em uma só
+        public string ObterMensagensValidacao()
+        {
+            return string.Join(". ", _mensagensValidacao);
+        }
+        #endregion
+        #region Adicionar e remover erros. Utilização na classes filha
+        //Métodos para adicionar e remover erros na lista
         protected void LimparCritica()
         {
-            mensagemValidacao.Clear();
+            _mensagensValidacao.Clear();
         }
 
         protected void AdicionarCritica(string mensagem)
         {
-            mensagemValidacao.Add(mensagem);
+            _mensagensValidacao.Add(mensagem);
         }
+        #endregion
     }
 }
 
 /*
- * Classe Entidade server para poder fazer a validação as regras de negócio
- * para cada uma das entidade que a implementarem
- * 
- * Propriedade _mensagemValidação é uma lista que guardará todas mensagems de violação,
- * casso as exigências das regras de négocio da classe que a implementarem não forem 
- * atendidas.
- * 
- * mensagemValidacao  será chamada pela propriedade EhValidado,
- * e ela retornara as mensagems de validação, caso já exista alguma, ou instanciara
- * a lista e a retornará, que servirá par adicionar as violação de regra de negócio.
- * 
- * Propriedade EhValido retorna um valor booleano para quem o chamar, retornará true
- * caso não tenha nehuma mensagem de validação em _mensagemValidacao, ou seja, 
- * não tenha erros,nesse caso se não tiver mensagem de violação a calsse e considerada valida,
- * ou false caso tenha alguma mensagem de validação na lista, nesse
- * caso as exigências da classe que as implementou não foram atendidas e a classe não 
- * é valida.
- * 
- * Método abstrato validade será implementado pelas classes filhas, e servirá para
- * manipular os método LimparMensagemValidacao e AdicionarCritica. Servirá para add
- * as regras de negócio.
+ * Cria uma lista para adicionar possiveis error.
+ * Construtor instanciando a lista.
+ * Método abstrato será implementado nas classes filha.
+ * EhValido verefica se tem algum erro na lista de erros.
+ * ObterMensagemValidação junta todas as strings da lista em uma só.
+ * Métodos Adicionar/Remover critica para adicionar os erros a lista de erros.
  */

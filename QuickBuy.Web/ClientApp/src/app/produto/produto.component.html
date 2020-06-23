@@ -10,7 +10,7 @@
          }" />
   <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
     <div *ngIf="nome.errors.required">
-      Nome invalido
+      Campo nome obrigatorio!
     </div>
   </div>
 
@@ -23,7 +23,7 @@
          }" />
   <div class="invalid-feedback mb-2" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
     <div *ngIf="descricao.errors.required">
-      Descrição invalido
+      Campo descrição obrigatorio!
     </div>
   </div>
 
@@ -36,7 +36,7 @@
          }" />
   <div class="invalid-feedback mb-2" *ngIf="preco.invalid && (preco.dirty || preco.touched)">
     <div *ngIf="preco.errors.required">
-      Preço invalido
+      Campo de preço obrigatorio!
     </div>
   </div>
 
@@ -47,8 +47,12 @@
            (change)="inputChange($event.target.files)" />
   </div>
 
-  <button class="btn btn-primary btn-block col-md-6" (click)="cadastrar()" [disabled]="ativar_spinner">
+  <button class="btn btn-primary btn-block col-md-6 mb-2" (click)="cadastrar()" [disabled]="ativar_spinner">
     <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner"></span>
     Cadastrar
   </button>
+
+  <div class="alert alert-danger col-md-6" *ngIf="mensagem">
+    {{ mensagem }}
+  </div>
 </form>

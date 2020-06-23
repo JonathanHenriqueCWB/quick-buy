@@ -30,7 +30,7 @@ export class ProdutoService implements OnInit {
 
   //MÉTODOS
   public cadastrarProduto(produto: Produto): Observable<Produto> {
-    return this.http.post<Produto>(this._baseUrl + "api/produto/cadastrar", JSON.stringify(produto), { headers: this.headers });
+    return this.http.post<Produto>(this._baseUrl + "api/produto/", JSON.stringify(produto), { headers: this.headers });
   }
 
   public alterarProduto(produto: Produto): Observable<Produto> {
@@ -42,7 +42,7 @@ export class ProdutoService implements OnInit {
   }
 
   public listarProduto(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this._baseUrl + "api/produto/");
+    return this.http.get<Produto[]>(this._baseUrl + "api/produto");
   }
 
   public obterProduto(produto: Produto): Observable<Produto> {

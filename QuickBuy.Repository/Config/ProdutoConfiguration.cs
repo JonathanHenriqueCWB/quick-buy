@@ -14,14 +14,9 @@ namespace QuickBuy.Repository.Config
             builder.HasKey(p => p.ProdutoId) ;
 
             //Builder utliza o padão fluent
-            builder.Property(p => p.Nome)
-                .IsRequired()
-                .HasMaxLength(50);
-            builder.Property(p => p.Descricao)
-                .IsRequired()
-                .HasMaxLength(400);
-            builder.Property(p => p.Preco)
-                .IsRequired();
+            builder.Property(p => p.Nome).IsRequired().HasMaxLength(50);
+            builder.Property(p => p.Descricao).IsRequired().HasMaxLength(400);
+            builder.Property(p => p.Preco).HasColumnType("decimal(19,4)").IsRequired();
         }
     }
 }
