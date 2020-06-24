@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public usuario;
   public returnUrl: string;
   public mensagem: string
-  public btnSpinner: boolean;
+  public ativar_spinner: boolean;
 
   constructor(private router: Router, private activateRouter: ActivatedRoute, private usuarioService: UsuarioService) {
   }
@@ -26,12 +26,15 @@ export class LoginComponent implements OnInit {
 
   //Método criado para testar o two-way data binding
   entrar() {
-    this.btnSpinner = true;
+    this.ativarSpinner();
     this.usuarioService.verificarUsuario(this.usuario).subscribe(
       data => {
-        //console.log(data);
-        this.usuarioService.usuario = data; //Propertie da classe de serviço usuario
 
+        this.ativarSpinner();
+        //Passa o json usuario para criar a sessão com mesmo nome de usuario logado
+        this.usuarioService.usuario = data;
+        this.desativarSpinner();
+        
         if (this.returnUrl == null) {
           this.router.navigate(['/']);
         } else {
@@ -41,8 +44,16 @@ export class LoginComponent implements OnInit {
       err => {
         console.log(err.error);
         this.mensagem = err.error;
-        this.btnSpinner = false;
+        this.desativarSpinner();
       } 
     );
+  }
+
+  //Métodos somente para ativar e deativar o efeito do spinner
+  public ativarSpinner() {
+    this.ativar_spinner = true;
+  }
+  public desativarSpinner() {
+    this.ativar_spinner = false;
   }
 }

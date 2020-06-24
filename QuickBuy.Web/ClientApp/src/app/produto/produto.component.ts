@@ -23,28 +23,42 @@ export class ProdutoComponent implements OnInit {
 
   //Sobe o arquivo de imagem para o servidor e salva o nome do arquivo
   public inputChange(files: FileList) {
+
     this.arquivoSelecionado = files.item(0);
-    this.ativar_spinner = true;
+    this.ativarSpinner();
+
     this.produtoService.enviarArquivo(this.arquivoSelecionado).subscribe(
       data => {
         this.produto.nomeArquivo = data;
-        this.ativar_spinner = false;
+        this.desativarSpinner();
       },
       err => {
         console.log(err);
+        this.desativarSpinner();
       }
     );
   }
 
   public cadastrar() {
+    this.ativarSpinner();
     this.produtoService.cadastrarProduto(this.produto).subscribe(
       data => {
+        this.desativarSpinner();
         console.log(data);
       },
       err => {
+        this.desativarSpinner();
         console.log(err.error);
         this.mensagem = err.error;
       }
     );
+  }
+
+  //Métodos somente para ativar e deativar o efeito do spinner
+  public ativarSpinner() {
+    this.ativar_spinner = true;
+  }
+  public desativarSpinner() {
+    this.ativar_spinner = false;
   }
 }
